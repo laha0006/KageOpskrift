@@ -1,13 +1,13 @@
 public class Ingrediens {
-    private String type;
-    private double mængde;
-    private String enhed;
-    private int oprindeligAntal;
-    private double kcal;
-    private double vægtPrEnhed;
+    private final String type;
+    private final double mængde;
+    private final String enhed;
+    private final int oprindeligAntal;
+    private final double kcal;
+    private final double vægtPrEnhed;
     private int antalPersoner;
 
-    // comment to test git push.
+
     public Ingrediens(String type, double mængde, String enhed, int oprindeligAntal, double kcal) {
         this.type = type;
         this.mængde = mængde;
@@ -32,7 +32,7 @@ public class Ingrediens {
         double faktor = (double) antalPersoner / oprindeligAntal;
         return mængde * faktor;
     }
-    
+
     public double beregnMængde() {
         double faktor = (double) antalPersoner / oprindeligAntal;
         return mængde * faktor;
@@ -43,14 +43,25 @@ public class Ingrediens {
         return mængde * vægtPrEnhed;
     }
 
+    public double beregnVægt() {
+        double mængde = beregnMængde();
+        return mængde * vægtPrEnhed;
+    }
+
     public double beregnEnergi(int antalPersoner) {
         double faktor = (double) antalPersoner / oprindeligAntal;
         return faktor * kcal;
-        // 200 g mel, kcal = 50, 2 personer
-        // 4 -   4 / 2 = 2, 2 * 50
-        // 400/200 = 2 * kcal 50
+
     }
 
+    public double beregnEnergi() {
+        double faktor = (double) antalPersoner / oprindeligAntal;
+        return faktor * kcal;
+    }
+
+    public void setAntal(int antalPersoner) {
+        this.antalPersoner = antalPersoner;
+    }
     public String getType() {
         return type;
     }

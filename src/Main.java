@@ -18,13 +18,17 @@ public class Main {
         for (Ingrediens ing : ingrediensList) {
             System.out.println(ing.beregnMængde() + " "
                     + ing.getEnhed()
-                    + " " + ing.getType());
+                    + " " + ing.getType()
+                    + " kcal: " + ing.beregnKcal()
+                    + " kjoule: " + ing.beregnKjoule());
         }
         for (Ingrediens ing : ingrediensList) {
             ing.setAntal(4);
             System.out.println(ing.beregnMængde() + " "
                     + ing.getEnhed()
-                    + " " + ing.getType());
+                    + " " + ing.getType()
+                    + " kcal: " + ing.beregnKcal()
+                    + " kjoule: " + ing.beregnKjoule());
         }
     }
 }

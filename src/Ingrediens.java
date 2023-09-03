@@ -1,4 +1,6 @@
 public class Ingrediens {
+    private final double EN_KCAL_I_KJOULE = 4.184d;
+
     private final String type;
     private final double mængde;
     private final String enhed;
@@ -48,15 +50,21 @@ public class Ingrediens {
         return mængde * vægtPrEnhed;
     }
 
-    public double beregnEnergi(int antalPersoner) {
+    public double beregnKcal(int antalPersoner) {
         double faktor = (double) antalPersoner / oprindeligAntal;
         return faktor * kcal;
 
     }
 
-    public double beregnEnergi() {
+    public double beregnKcal() {
         double faktor = (double) antalPersoner / oprindeligAntal;
         return faktor * kcal;
+    }
+
+    public double beregnKjoule() {
+        double faktor = (double) antalPersoner / oprindeligAntal;
+        return faktor * kcal * EN_KCAL_I_KJOULE;
+
     }
 
     public void setAntal(int antalPersoner) {

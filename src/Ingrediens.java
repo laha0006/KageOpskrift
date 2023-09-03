@@ -7,7 +7,7 @@ public class Ingrediens {
     private double vægtPrEnhed;
     private int antalPersoner;
 
-
+    // comment to test git push.
     public Ingrediens(String type, double mængde, String enhed, int oprindeligAntal, double kcal) {
         this.type = type;
         this.mængde = mængde;

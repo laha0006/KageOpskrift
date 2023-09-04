@@ -1,5 +1,6 @@
 public class Ingrediens {
-    private final double EN_KCAL_I_KJOULE = 4.184d;
+    private final double EN_KCAL_I_KJOULE = 4.184;
+
 
     private final String type;
     private final double mængde;
@@ -36,6 +37,12 @@ public class Ingrediens {
     }
 
     public double beregnMængde() {
+        //200g mel 2. 
+        // set antal = 4
+        //antalPerson = 4
+        // oprindelige antal = 2;
+        // faktor = 4 / 2 = 2;
+        // 200 * 2 = 400
         double faktor = (double) antalPersoner / oprindeligAntal;
         return mængde * faktor;
     }

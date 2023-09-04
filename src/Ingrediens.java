@@ -1,7 +1,6 @@
 public class Ingrediens {
     private final double EN_KCAL_I_KJOULE = 4.184;
 
-
     private final String type;
     private final double mængde;
     private final String enhed;
@@ -9,7 +8,6 @@ public class Ingrediens {
     private final double kcal;
     private final double vægtPrEnhed;
     private int antalPersoner;
-
 
     public Ingrediens(String type, double mængde, String enhed, int oprindeligAntal, double kcal) {
         this.type = type;
@@ -31,25 +29,8 @@ public class Ingrediens {
         antalPersoner = oprindeligAntal;
     }
 
-    public double beregnMængde(int antalPersoner) {
-        double faktor = (double) antalPersoner / oprindeligAntal;
-        return mængde * faktor;
-    }
-
     public double beregnMængde() {
-        //200g mel 2. 
-        // set antal = 4
-        //antalPerson = 4
-        // oprindelige antal = 2;
-        // faktor = 4 / 2 = 2;
-        // 200 * 2 = 400
-        double faktor = (double) antalPersoner / oprindeligAntal;
-        return mængde * faktor;
-    }
-
-    public double beregnVægt(int antalPersoner) {
-        double mængde = beregnMængde(antalPersoner);
-        return mængde * vægtPrEnhed;
+        return mængde / oprindeligAntal * antalPersoner;
     }
 
     public double beregnVægt() {
@@ -57,26 +38,19 @@ public class Ingrediens {
         return mængde * vægtPrEnhed;
     }
 
-    public double beregnKcal(int antalPersoner) {
-        double faktor = (double) antalPersoner / oprindeligAntal;
-        return faktor * kcal;
-
-    }
-
     public double beregnKcal() {
-        double faktor = (double) antalPersoner / oprindeligAntal;
-        return faktor * kcal;
+        return kcal / oprindeligAntal * antalPersoner;
     }
 
     public double beregnKjoule() {
-        double faktor = (double) antalPersoner / oprindeligAntal;
-        return faktor * kcal * EN_KCAL_I_KJOULE;
+        return kcal / oprindeligAntal * antalPersoner * EN_KCAL_I_KJOULE;
 
     }
 
     public void setAntal(int antalPersoner) {
         this.antalPersoner = antalPersoner;
     }
+
     public String getType() {
         return type;
     }

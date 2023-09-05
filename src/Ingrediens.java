@@ -18,7 +18,7 @@ public class Ingrediens {
         antalPersoner = oprindeligAntal;
         vægtPrEnhed = 1;
     }
-
+    // metode overloading
     public Ingrediens(String type, double mængde, String enhed, int oprindeligAntal, double kcal, double vægtPrEnhed) {
         this.type = type;
         this.mængde = mængde;
@@ -43,9 +43,8 @@ public class Ingrediens {
     }
 
     public double beregnKjoule() {
-        return kcal / oprindeligAntal * antalPersoner * EN_KCAL_I_KJOULE;
-
-    }
+        return beregnKcal() * EN_KCAL_I_KJOULE;
+           }
 
     public void setAntal(int antalPersoner) {
         this.antalPersoner = antalPersoner;

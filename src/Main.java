@@ -1,40 +1,56 @@
-import java.util.ArrayList;
-
 public class Main {
+    
+    
     public static void main(String[] args) {
-        final int ANTAL_PERSONER = 2;
-        final int NYT_ANTAL_PERSONER = 2;
+        Main app = new Main();
+        app.start();
 
-        System.out.println("Kage? KAAAAAGGGEEEEEEEE!");
-        /*
-        instansiere ingrediens objekter.
-        Med de argumenter vi har defineret i Ingrediens klassens konstruktør
-        Type, Mændge, Enhed,oprindeligeAntalPersoner,kcal,vægtPrEnhed
-        Konstruktøren er “overloaded” dvs. Vi har 2 konstruktøren, en som ikke
-        Tager vægtPrEnhed, så hvis det sidste argument undlades, så bliver vægtPrEnehed = 1
-        */
-        Ingrediens ingrediens1 = new Ingrediens("Æg", 2, "Styk", ANTAL_PERSONER, 108, 50);
-        Ingrediens ingrediens2 = new Ingrediens("Mel", 400, "gram", ANTAL_PERSONER, 1456);
-        Ingrediens ingrediens3 = new Ingrediens("Vand", 500, "milliliter", ANTAL_PERSONER, 0);
-        Ingrediens ingrediens4 = new Ingrediens("Salt", 2, "tsk.", ANTAL_PERSONER, 0, 10);
+    }
 
-        //en liste af typen Ingrediens (den klasse vi har defineret)
-        //bliver sat = {ingrediens1,...} altså vi sætter listen til at være lig med
-        //vores 4 ingrediens objekter.
+    private void start() {
+        Opskrift opskrift = getOpskrift();
+        printStartBesked(opskrift);
+        printIngrediensTabel(opskrift);
+        printVægtEnergiTabel(opskrift);
+
+
+    }
+
+    private void printStartBesked(Opskrift opskrift) {
+        System.out.printf("%s til %d personer: %n", opskrift.get);
+    }
+
+    private void printVægtEnergiTabel(Opskrift opskrift) {
+        Ingrediens[] ingrediensList = opskrift.getIngrediensList();
+        String formatString = "| %-10s | %-6.0f | %-6.0f | %-6.0f |%n";
+        System.out.printf("| %-10s | %-6s | %-6s | %-6s | %n","Ingridiens","Vægt","Kcal","Kjoule");
+        for(Ingrediens i : ingrediensList) {
+            System.out.printf(formatString,i.getType(),i.beregnVægt(),i.beregnKcal(),i.beregnKjoule());
+        }
+        String breakLine = "-";
+        System.out.println(breakLine.repeat(41));
+        System.out.printf(formatString,"Total",opskrift.beregnTotalVægt(),opskrift.beregnTotalKcal(),opskrift.beregnTotalKjoule());
+        System.out.println();
+    }
+
+    private void printIngrediensTabel(Opskrift opskrift) {
+        Ingrediens[] ingrediensList = opskrift.getIngrediensList();
+        String formatString = "| %-10s | %6.0f | %-12s |%n";
+        System.out.printf("| %-10s | %-6s | %-12s | %n","Ingridiens","Mængde","Enhed");
+        for(Ingrediens i : ingrediensList) {
+            System.out.printf(formatString,i.getType(),i.getMængde(),i.getEnhed());
+        }
+        System.out.println();
+    }
+
+    private Opskrift getOpskrift() {
+        Ingrediens ingrediens1 = new Ingrediens("Æg", 2, "Styk", 2, 108, 50);
+        Ingrediens ingrediens2 = new Ingrediens("Mel", 400, "gram", 2, 1456);
+        Ingrediens ingrediens3 = new Ingrediens("Vand", 500, "milliliter", 2, 0);
+        Ingrediens ingrediens4 = new Ingrediens("Salt", 2, "tsk.", 2, 0, 10);
+
         Ingrediens[] ingrediensList = {ingrediens1, ingrediens2, ingrediens3, ingrediens4};
 
-        //instansiere et opskrift objekt, som vi giver 2 arugmenter
-        //Først et navn til opskriftet, og derefter den liste med ingredienser
-        //vi har defineret for oven.
-        Opskrift opskrift = new Opskrift("Dej", ingrediensList);
-
-        //print opskrift data ud.
-        System.out.println("\nTil 2 personer: ");
-        opskrift.printOpskrift();
-
-        //sæt et nyt antal personer og print igen.
-        opskrift.setAntal(4);
-        System.out.println("\nTil 4 Personer: ");
-        opskrift.printOpskrift();
+        return new Opskrift("Dej", ingrediensList);
     }
 }

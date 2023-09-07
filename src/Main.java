@@ -1,10 +1,9 @@
 public class Main {
-    
+    private final String TOP_LINE = "─";
     
     public static void main(String[] args) {
         Main app = new Main();
         app.start();
-
     }
 
     private void start() {
@@ -12,35 +11,45 @@ public class Main {
         printStartBesked(opskrift);
         printIngrediensTabel(opskrift);
         printVægtEnergiTabel(opskrift);
-
-
     }
 
     private void printStartBesked(Opskrift opskrift) {
-        System.out.printf("%s til %d personer: %n", opskrift.get);
+        System.out.printf("%s til %d personer: %n", opskrift.getName(),opskrift.getAntalPersoner());
     }
 
     private void printVægtEnergiTabel(Opskrift opskrift) {
         Ingrediens[] ingrediensList = opskrift.getIngrediensList();
-        String formatString = "| %-10s | %-6.0f | %-6.0f | %-6.0f |%n";
-        System.out.printf("| %-10s | %-6s | %-6s | %-6s | %n","Ingridiens","Vægt","Kcal","Kjoule");
+        System.out.print("\u250C" +TOP_LINE.repeat(12)+"\u252c"+TOP_LINE.repeat(8)+"\u252c"+TOP_LINE.repeat(8)+"\u252c"+TOP_LINE.repeat(8) +"\u2510\n");
+        String formatString = "│ %-10s \u2502 %6.0f \u2502 %6.0f \u2502 %6.0f │%n";
+        System.out.printf("\u2502 %-10s \u2502 %-6s \u2502 %-6s \u2502 %-6s \u2502%n","Ingridiens","Vægt","Kcal","Kjoule");
+        System.out.print("\u251C" +TOP_LINE.repeat(12)+"\u253c"+TOP_LINE.repeat(8)+"\u253c"+TOP_LINE.repeat(8)+"\u253c"+TOP_LINE.repeat(8) +"\u2524\n");
+
         for(Ingrediens i : ingrediensList) {
             System.out.printf(formatString,i.getType(),i.beregnVægt(),i.beregnKcal(),i.beregnKjoule());
         }
         String breakLine = "-";
-        System.out.println(breakLine.repeat(41));
+        System.out.print("\u251C" +TOP_LINE.repeat(12)+"\u253c"+TOP_LINE.repeat(8)+"\u253c"+TOP_LINE.repeat(8)+"\u253c"+TOP_LINE.repeat(8) +"\u2524\n");
         System.out.printf(formatString,"Total",opskrift.beregnTotalVægt(),opskrift.beregnTotalKcal(),opskrift.beregnTotalKjoule());
-        System.out.println();
+        System.out.print("\u251C" +TOP_LINE.repeat(12)+"\u253c"+TOP_LINE.repeat(8)+"\u253c"+TOP_LINE.repeat(8)+"\u253c"+TOP_LINE.repeat(8) +"\u2524\n");
+
+        System.out.printf(formatString,"Gennemsnit",opskrift.gennemsnitVægt(),opskrift.gennemsnitKcal(),opskrift.gennemsnitKjoule());
+
+        System.out.print("\u2514" +TOP_LINE.repeat(12)+"\u2534"+TOP_LINE.repeat(8)+"\u2534"+TOP_LINE.repeat(8)+"\u2534"+TOP_LINE.repeat(8) +"\u2518\n");
+
     }
 
     private void printIngrediensTabel(Opskrift opskrift) {
         Ingrediens[] ingrediensList = opskrift.getIngrediensList();
-        String formatString = "| %-10s | %6.0f | %-12s |%n";
-        System.out.printf("| %-10s | %-6s | %-12s | %n","Ingridiens","Mængde","Enhed");
+        System.out.print("\u250C" +TOP_LINE.repeat(12)+"\u252c"+TOP_LINE.repeat(8)+"\u252c"+TOP_LINE.repeat(14)+"\u2510\n");
+        String formatString = "\u2502 %-10s \u2502 %6.0f \u2502 %-12s │%n";
+        System.out.printf("\u2502 %-10s \u2502 %-6s \u2502 %-12s \u2502 %n","Ingridiens","Mængde","Enhed");
+        System.out.print("\u251C" +TOP_LINE.repeat(12)+"\u253c"+TOP_LINE.repeat(8)+"\u253c"+TOP_LINE.repeat(14)+"\u2524\n");
+
         for(Ingrediens i : ingrediensList) {
             System.out.printf(formatString,i.getType(),i.getMængde(),i.getEnhed());
         }
-        System.out.println();
+        System.out.print("\u2514" +TOP_LINE.repeat(12)+"\u2534"+TOP_LINE.repeat(8)+"\u2534"+TOP_LINE.repeat(14)+"\u2518\n");
+
     }
 
     private Opskrift getOpskrift() {

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Opskrift {
     private final String name;
     private final Ingrediens[] ingrediensList;
@@ -5,9 +7,11 @@ public class Opskrift {
 
 
 
+
     public Opskrift(String name, Ingrediens[] ingrediensList) {
         this.name = name;
         this.ingrediensList = ingrediensList;
+        antalPersoner = ingrediensList[0].getOprindeligAntal();
     }
 
 
@@ -48,7 +52,6 @@ public class Opskrift {
         return ingrediensList;
     }
 
-
     public void setAntal(int antalPersoner) {
         this.antalPersoner = antalPersoner; // bliver ikke brugt endnu, til fremtidig brug af udregning af gennemsnit per person.
         for (Ingrediens i : ingrediensList) {
@@ -56,24 +59,13 @@ public class Opskrift {
         }
     }
 
-
-
-    public void printOpskrift() {
-        for (Ingrediens ing : ingrediensList) {
-            System.out.println(ing.beregnMængde() + " "
-                    + ing.getEnhed()
-                    + " " + ing.getType()
-                    + " vægt: " + ing.beregnVægt()
-                    + " kcal: " + ing.beregnKcal()
-                    + " kjoule: " + ing.beregnKjoule());
-        }
-        System.out.println("Total Vægt: " + beregnTotalVægt());
-        System.out.println("Total Kcal: " + beregnTotalKcal());
-        System.out.println("Total Kjoule: " + beregnTotalKjoule());
-        System.out.println("Gennemsnits Vægt: " + gennemsnitVægt());
-        System.out.println("Gennemsnits Kcal: " + gennemsnitKcal());
-        System.out.println("Gennemsnits Kjoule: " + gennemsnitKjoule());
-
+    public int getAntalPersoner() {
+        return antalPersoner;
     }
+
+    public String getName() {
+        return name;
+    }
+
 }
 

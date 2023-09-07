@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Opskrift {
     private final String name;
     private final Ingrediens[] ingrediensList;

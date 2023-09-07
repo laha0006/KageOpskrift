@@ -8,6 +8,7 @@ public class Main {
 
     private void start() {
         Opskrift opskrift = getOpskrift();
+        opskrift.setAntal(50);
         printStartBesked(opskrift);
         printIngrediensTabel(opskrift);
         printVægtEnergiTabel(opskrift);

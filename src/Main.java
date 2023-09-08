@@ -1,6 +1,6 @@
 public class Main {
     private final String TOP_LINE = "─";
-    //testing git..
+    //testing git...
     public static void main(String[] args) {
         Main app = new Main();
         app.start();
